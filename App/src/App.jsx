@@ -87,12 +87,118 @@ import './App.css'
 // }
 
 
-import SignupForm from './components/Signupform';
+// import SignupForm from './components/Signupform';
 
-function App(){
+// function App(){
+//   return (<div>
+//     <SignupForm />
+//   </div>);
+// }
+
+import { BrowserRouter,Link,Route, Routes} from "react-router-dom"
+
+
+// function Homepage(){
+//   return ( <h1 style={{display: "center"}}>Home Page</h1>)
+// }
+// function Aboutpage(){
+//   return ( <h1>About Page</h1>)
+// }
+// function App(){
+//   return (
+//     <div>
+//       <nav style={{display: "flex",gap:"1rem",marginBottom:"1rem"}}>
+//         <Link to="/">Home</Link>{"     "}
+//         <Link to="/about">About</Link>
+//       </nav>
+//       <Routes>
+//         <Route path="/" element={<Homepage />}/>
+//         <Route path="/about" element={<Aboutpage />}/>
+//         <Route path="*" element={<h1>404 Not Found</h1>}/>
+//       </Routes>
+//       <div>FOOTER</div>
+//     </div>
+//   )
+// }
+
+function Homepage(){
+  return ( <div style={{padding:"0 1.5rem"}}>
+    <h1 style={{display: "flex"}}>Home</h1>
+    <p>You are not logged in. Got to the login page to sign in.</p>
+    </div>);
+}
+function Profile(){
   return (<div>
-    <SignupForm />
-  </div>);
+    <h1>Profile</h1>
+    <p>Name : [name]</p>
+    <p>show all users</p>
+    </div>);
 }
 
-export default App;
+
+
+  function LoginPage(){
+    const [name,setName] = useState("");
+    const [user,setUser] = useState({name:"",isAuth:false});
+  
+    function handleSubmit(e){
+      e.preventDefault();
+      if (!name.trim()) return;
+      setUser({name:name,isAuth:true})
+    }
+    return (
+      <div style={{padding:"0 1.5rem"}}>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit} style={{marginTop: "1rem"}}>
+          <label>
+            Name
+            <input 
+            type="text"
+            placeholder="type your name.."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            style={{marginLeft : "0.5rem"}}
+            />
+          </label>
+          <button type="submit" style={{marginLeft:"0.5rem"}}>
+            Login in
+          </button>
+        </form>
+        {user.isAuth && <p>User Logged IN</p>}
+      </div>
+    );
+  }
+  function Navbar(){
+    return (
+      <header
+        style={{
+          padding:"1rem 1.5rem",
+          marginBottom : "1rem",
+          borderBottom: "1px solid #e5e7eb",
+          display: "flex",
+          justifyContent : "space-between",
+        }}>
+          <nav style = {{gap:"1rem",display:"flex"}}>
+          <Link to="/">Home</Link>
+          <Link to="/profile">Profile</Link>
+          </nav>
+          <div>
+            <Link to ="/login">Login</Link>
+          </div>
+      </header>
+    );}
+  function App(){
+    return (
+      <div><Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage /> }/>
+          <Route path="/profile" element={<Profile /> }/>
+          <Route path="/login" element={<LoginPage /> }/>
+          <Route path="*" element={<h1 style = {{padding:"0 1.5rem"}}>404 Not Found</h1>}/>
+        </Routes>
+      </div>
+    )
+  }
+
+
+export default App; 
