@@ -56,34 +56,43 @@ import './App.css'
 //   );
 // }
 
-function TodoList(){
-  const todos = [
-    {id : 1, text: " Learn JSX"},
-    {id:2,text : "Understand props"},
-    {id: 3, text : "Master state & events"},
-  ];
-  return (
-    <div>
-      <h2>My React Todos</h2>
-      {/* <ul>
-        <li>Learn JSX</li>
-        <li>Understand props</li>
-        <li>Master state & events</li>
-      </ul> */}
-      <ul>{
-        todos.map((todo) => (
-          <li key={todo.id}>{todo.text}</li>
-        ))
-        }</ul>
-    </div>
-  )
-}
+// function TodoList(){
+//   const todos = [
+//     {id : 1, text: " Learn JSX"},
+//     {id:2,text : "Understand props"},
+//     {id: 3, text : "Master state & events"},
+//   ];
+//   return (
+//     <div>
+//       <h2>My React Todos</h2>
+//       {/* <ul>
+//         <li>Learn JSX</li>
+//         <li>Understand props</li>
+//         <li>Master state & events</li>
+//       </ul> */}
+//       <ul>{
+//         todos.map((todo) => (
+//           <li key={todo.id}>{todo.text}</li>
+//         ))
+//         }</ul>
+//     </div>
+//   )
+// }
+// function App(){
+//   return (
+//     <div>
+//       <TodoList />
+//     </div>
+//   )
+// }
+
+
+import SignupForm from './components/Signupform';
+
 function App(){
-  return (
-    <div>
-      <TodoList />
-    </div>
-  )
+  return (<div>
+    <SignupForm />
+  </div>);
 }
 
 export default App;
